@@ -25,7 +25,11 @@ function loaded(params) {
      ctx = canvas.getContext("2d");
      canvaswidth = canvas.offsetWidth;
      ctx.fillStyle = "#a7b2c2";
-    
+     ctx.fillStyle = "white"; 
+
+     ctx.font = "30px Monaco";
+     
+     ctx.fillText("Hello, Pong! Click to play", 50, 50);
      ballVelocityX = setRandomSpeed();
 }
 
@@ -45,6 +49,11 @@ onmousemove = function(e){
     mouseY = e.clientY;
    
 
+}
+onkeydown = function(e){
+    if (e.key == "w" || e.key === "W"){
+        console.log("W ");
+    }
 }
 
 document.addEventListener("click", () => {
@@ -85,6 +94,12 @@ function onTimerTick() {
         {
             ballVelocityX = ballVelocityX * -1;
         }
+    }
+    if (ballX >= 660) {
+        if (ballY >= computerY && ballY <= computerY + 100) {
+            ballVelocityX = ballVelocityX * -1;
+        }
+        
     }
 
     ctx.fillRect(playerX,playerY,10,100);
