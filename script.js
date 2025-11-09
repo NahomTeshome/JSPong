@@ -64,12 +64,8 @@ document.addEventListener("click", () => {
         console.log("Game started!");
     }
 });
-function onTimerTick() {
 
-    ctx.clearRect(0,0,700,400);
-    ctx.fillStyle = "#a7b2c2";
-    playerY = mouseY - 200;
-
+function borderControl(params) {
     if (playerY <= 0) {
         playerY = 0;
         console.log("below zero");
@@ -77,7 +73,9 @@ function onTimerTick() {
     if (playerY >= 300) {
         playerY = 300;
     }
+}
 
+function ballOutofBounds(params) {
     if (ballX <= 0){
         ballX = 340;
         hitSound.play();
@@ -89,6 +87,10 @@ function onTimerTick() {
         hitSound.play();
         ballVelocityX = setRandomSpeed();
     }
+}
+
+
+function paddleCollide(params) {
     if (ballX <= 30) {
         if (ballY >= playerY && ballY <= playerY +100)
         {
@@ -101,6 +103,19 @@ function onTimerTick() {
         }
         
     }
+}
+
+function onTimerTick() {
+
+    ctx.clearRect(0,0,700,400);
+    ctx.fillStyle = "#a7b2c2";
+    playerY = mouseY - 200;
+
+    borderControl();
+
+    ballOutofBounds();
+
+    paddleCollide();
 
     ctx.fillRect(playerX,playerY,10,100);
     ctx.fillRect(computerX,computerY,10,100);
@@ -119,4 +134,3 @@ function onTimerTick() {
         
 
 
-console.log("js is connected");
