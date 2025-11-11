@@ -17,6 +17,7 @@ var ballX = 700/2 - 10;
 var ballY = 400/2 - 10;
 
 var ballVelocityX;
+var ballVelocityY;
 
 let hitSound = new Audio("wallhit.wav");
 
@@ -30,17 +31,18 @@ function loaded(params) {
      ctx.font = "30px Monaco";
      
      ctx.fillText("Hello, Pong! Click to play", 50, 50);
-     ballVelocityX = setRandomSpeed();
+     ballVelocityX = setRandomSpeed()[0];
+     ballVelocityY = setRandomSpeed()[1];
 }
 
 
 function setRandomSpeed(params) {
     let randInt = Math.floor(Math.random() * 2);
     if (randInt == 0){
-        return -10;
+        return [-10,-4];
      }
     if (randInt == 1) {
-        return  10;
+        return  [10,4];
      }
 }
 onmousemove = function(e){
@@ -79,13 +81,21 @@ function ballOutofBounds(params) {
     if (ballX <= 0){
         ballX = 340;
         hitSound.play();
-        ballVelocityX = setRandomSpeed();
+        ballVelocityX = setRandomSpeed()[0];
     }
 
     if (ballX >= 700){
         ballX = 340;
         hitSound.play();
-        ballVelocityX = setRandomSpeed();
+        ballVelocityX = setRandomSpeed()[0];
+    }
+
+    if (ballY <= 0) {
+        ballVelocityY = ballVelocityY * -1;
+        
+    }
+    if (ballY >= 400 - 40){
+        ballVelocityY = ballVelocityY * -1;
     }
 }
 
@@ -95,11 +105,14 @@ function paddleCollide(params) {
         if (ballY >= playerY && ballY <= playerY +100)
         {
             ballVelocityX = ballVelocityX * -1;
+            hitSound.play();
         }
     }
-    if (ballX >= 660) {
+    if (ballX >= 660-10) {
         if (ballY >= computerY && ballY <= computerY + 100) {
             ballVelocityX = ballVelocityX * -1;
+            hitSound.play();
+
         }
         
     }
@@ -129,6 +142,7 @@ function onTimerTick() {
         computerY -= 4;
     }
     ballX += ballVelocityX;
+    ballY += ballVelocityY;
     console.log("player y is",playerY);
 }
         
