@@ -19,6 +19,9 @@ var ballY = 400/2 - 10;
 var ballVelocityX;
 var ballVelocityY;
 
+var playerScore = 0;
+var computerScore = 0;
+
 let hitSound = new Audio("wallhit.wav");
 
 function loaded(params) {
@@ -39,10 +42,10 @@ function loaded(params) {
 function setRandomSpeed(params) {
     let randInt = Math.floor(Math.random() * 2);
     if (randInt == 0){
-        return [-10,-4];
+        return [-10,-5];
      }
     if (randInt == 1) {
-        return  [10,4];
+        return  [10,5];
      }
 }
 onmousemove = function(e){
@@ -75,6 +78,12 @@ function borderControl(params) {
     if (playerY >= 300) {
         playerY = 300;
     }
+    if (computerY <= 0){
+        computerY = 0;
+    }
+    if (computerY >= 300){
+        computerY = 300;
+    }
 }
 
 function ballOutofBounds(params) {
@@ -82,12 +91,14 @@ function ballOutofBounds(params) {
         ballX = 340;
         hitSound.play();
         ballVelocityX = setRandomSpeed()[0];
+        computerScore += 1;
     }
 
     if (ballX >= 700){
         ballX = 340;
         hitSound.play();
         ballVelocityX = setRandomSpeed()[0];
+        playerScore +=1;
     }
 
     if (ballY <= 0) {
@@ -118,10 +129,26 @@ function paddleCollide(params) {
     }
 }
 
+function computerPaddleMovement(params) {
+    let paddleCenter = computerY + 50;
+    let diff = ballY - paddleCenter;
+    
+    computerY += diff * 0.2;
+    
+    
+    
+}
+
+function displayScore(params) {
+    ctx.font = "30px Monaco";
+     
+    ctx.fillText(playerScore+"|"+ computerScore, 320, 50);
+    
+}
 function onTimerTick() {
 
     ctx.clearRect(0,0,700,400);
-    ctx.fillStyle = "#a7b2c2";
+    ctx.fillStyle = "white";
     playerY = mouseY - 200;
 
     borderControl();
@@ -130,17 +157,14 @@ function onTimerTick() {
 
     paddleCollide();
 
+    computerPaddleMovement();
+
     ctx.fillRect(playerX,playerY,10,100);
     ctx.fillRect(computerX,computerY,10,100);
 
     ctx.fillRect(ballX,ballY,20,20);
-    
-    if (playerY > computerY){
-        computerY += 4;
-    }
-    if (playerY < computerY) {
-        computerY -= 4;
-    }
+    displayScore();
+    computerPaddleMovement();
     ballX += ballVelocityX;
     ballY += ballVelocityY;
     console.log("player y is",playerY);
