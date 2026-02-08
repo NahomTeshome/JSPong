@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 canvas{
     margin-top: 50px;
     display: inline;
@@ -14,4 +15,22 @@ h1{
     width: 100%;
     height: 100%;
     text-align: center;
+=======
+h1{
+    text-align: center;
+    font-family: monaco;
+}
+#canvascontainer {
+    text-align: center;
+    width: 100%;
+   
+}
+canvas{
+    image-rendering: pixelated;
+    margin-top: 50px;
+    width: 700px;
+    height: 400px;
+    background-color: rgb(49, 44, 102);
+   
+>>>>>>> d29b8da23e5821212b9328ac4fae993ea42836e3
 }
