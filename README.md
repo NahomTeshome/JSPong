@@ -10,7 +10,7 @@ Upcoming features
 - Online Multiplayer version with a flask server
 
 
-##Developer
+## Developer
 Nahom Teshome
 
 ![Game Screenshot](screenshots/gameplay.png)
