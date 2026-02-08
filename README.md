@@ -5,7 +5,7 @@ Current features
 - Score tracking: Track your and the computer's score
 - Smooth animations with Canvas.js
 - In game sound effects
-
+![Game Screenshot](screenshots/gameplay.png)
 Upcoming features
 - Online Multiplayer version with a flask server
 
@@ -13,4 +13,3 @@ Upcoming features
 ## Developer
 Nahom Teshome
 
-![Game Screenshot](screenshots/gameplay.png)
