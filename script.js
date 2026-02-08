@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-
-function loaded(params) {
-    canvas = document.getElementById("canvas")
-    ctx = canvas.getContext("2d")
-}
-
-
-console.log("js is connected")
-=======
 mouseX = null;
 mouseY = null;
 
@@ -182,4 +172,3 @@ function onTimerTick() {
         
 
 
->>>>>>> d29b8da23e5821212b9328ac4fae993ea42836e3
