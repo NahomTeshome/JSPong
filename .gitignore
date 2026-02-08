@@ -1,2 +1,4 @@
 screenshots/*.png
+screenshots/*.txt
+
 !screenshots/gameplay.png
